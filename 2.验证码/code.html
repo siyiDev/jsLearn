@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>code</title>
+    </head>
+
+    <body>
+        <div class="v_code">
+            <div class="code_show">
+                <span class="code" id="checkCode">ahjh3v</span>
+                <a href="" id="linkbt">看不清换一张</a>
+            </div>
+            <div class="input_code">
+                <label for="inputCode">验证码：</label>
+                <input type="text" name="" id="inputCode" />
+                <span id="text_show"></span>
+            </div>
+            <input type="button" name="" id="Button1" value="确定" />
+        </div>
+        <script>
+            //生成验证码
+
+            // getCode();
+            let code = getCode();
+            function getCode() {
+                var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+                let str = '';
+                for (let i = 0; i < 6; i++) {
+
+                    let num = Math.round(Math.random() * (15 - 0) + 0);
+
+                    str += arr[num]
+                    console.log(str);
+
+                }
+                document.getElementById('checkCode').innerText = str
+                return str
+            }
+
+            document.getElementById('linkbt').onclick = function () {
+                document.getElementById('checkCode').innerText = code
+            }
+            window.onload = code
+                // 提交进行对比
+            document.getElementById('Button1').onclick = function () {
+                var code = document.getElementById('checkCode').innerText;
+                var inputCode = document.getElementById('inputCode').value;
+                if (code !=inputCode) {
+                    alert('no!')
+                    return false
+                }
+            }
+        </script>
+    </body>
+
+</html>
