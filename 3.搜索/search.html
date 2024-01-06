@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>search</title>
+
+    </head>
+    <style>
+        .content{
+            width:500px;
+            margin:40px auto;
+        }
+        .search{
+            width: 400px;
+            overflow: hidden;
+            
+        }
+        .search input{
+            float: left;
+        }
+        #val{
+            height: 35px;
+            width: 300px;
+            padding-left: 10px;
+        }
+        #sub{
+            height: 40px;
+            width: 80px;
+            margin-left: 3px;
+            font-size: 20px;
+        }
+        .show{
+            width: 302px;
+            height: 300px;
+            border: 2px solid #ccc;
+            padding-left: 10px;
+            display: none;
+        }
+        .show p{
+            font-size: 12px;
+        }
+    </style>
+
+    <body>
+        <div class="content">
+            <div class="search">
+                <input type="text" id="val" placeholder="请输入课程">
+                <input type="submit" id="sub">
+
+            </div>
+            <div class="show" id="show"></div>
+
+        </div>
+
+        <script>
+            let input = document.getElementById('val')
+            let show = document.getElementById('show')
+            input.onfocus = function () {
+                show.style.display = 'block'
+            }
+            input.addEventListener('blur', function (event) {
+                show.style.display = 'none'
+            })
+
+        </script>
+
+    </body>
+
+</html>
