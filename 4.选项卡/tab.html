@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>tab</title>
+        <style>
+            ul,
+            li {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            ul {
+                overflow: hidden;
+            }
+
+            li {
+                width: 100px;
+                height: 40px;
+                background-color: #eee;
+                border: 1px solid #ccc;
+                line-height: 40px;
+                float: left;
+                text-align: center;
+            }
+            div{
+                width: 400px;
+                height: 406px;
+                border: 1px solid #ccc;
+            }
+            img{
+                width: 406px;
+                height: 406px;
+                display: none;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+        <UL>
+            <li>大橘</li>
+            <li>英短</li>
+            <li>美短</li>
+            <li>布偶</li>
+        </UL>
+        <div>
+            <img src="./ju.jpg" alt="" style="display: block;">
+            <img src="./ying.jpg" alt="">
+            <img src="./hu.jpg" alt="">
+            <img src="./bu.jpg" alt="">
+        </div>
+        <script>
+
+            let li = document.getElementsByTagName('li')
+            let img = document.getElementsByTagName('img')
+            for (let i = 0; i < li.length; i++) {
+                li[i].index = i;
+                li[i].onmouseover =function(){
+                    this.style.backgroundColor = '#bbb'
+
+                    for (let j = 0; j < img.length; j++) {
+                        img[j].style.display = 'none'
+                    }
+                    img[this.index].style.display = 'block'
+                }
+                li[i].onmouseout = function(){
+                    li[i].style.backgroundColor='#eee'
+                }
+
+            }
+
+        </script>
+
+    </body>
+
+</html>
