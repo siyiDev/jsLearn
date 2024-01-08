@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+
+            }
+            .content{
+                height: 2000px;
+            }
+            .goTop{
+                width: 100px;
+                height: 100px;
+                background-color: #bbb;
+                text-align: center;
+                line-height: 100px;
+                position: fixed;
+                right: 20px;
+                display: none;
+            }
+        </style>
+
+
+    </head>
+
+    <body>
+
+        <div class="content">
+            <h2>返回首屏</h2>
+            <div class="goTop">返回</div>
+        </div>
+
+    </body>
+
+    <script>
+        let goTop = document.querySelector('.goTop')
+        window.onscroll = function(){
+            let res = document.documentElement.scrollTop 
+            if (res >=400) {
+                goTop.style.display = 'block'
+
+            }else{
+                goTop.style.display = 'none'
+            }
+        }
+        goTop.onclick = function(){
+            document.documentElement.scrollTop = 0;
+        }
+
+
+
+    </script>
+</html>
