@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: #f0f;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+    }
+</style>
+<body>
+    <h2>鼠标绑定小盒子</h2>
+    <div id="div"></div>
+    <script>
+        let div = document.querySelector('#div')
+        document.onmousemove = function(e){
+            let event = e
+            div.style.left = event.clientX - div.clientWidth / 2 + 'px'
+            div.style.top = event.clientY - div.clientHeight / 2 + 'px'
+
+        }
+    </script>
+</body>
+</html>
