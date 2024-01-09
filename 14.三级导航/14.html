@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            color: #fff;
+            text-decoration: none;
+            display: none;
+        }
+        #ul1{
+            width: 500px;
+            font-size: 14px;
+            color: #fff;
+            line-height: 30px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 50px;
+            li{
+                display: inline-block;
+                float: left;
+                width: 98px;
+                height: 30px;
+                background-color: #f60;
+                border: 1px solid #fff;
+            }
+            li :hover{
+                background-color: #666666;
+            }
+            .ul2{
+                display: none;
+                position: relative;
+                width: 100px;
+                li{
+                    background-color: gold;
+                }
+                li:hover{
+                    background-color: #F6F;
+                }
+                .UL3{
+                    position: absolute;
+                    left: 98px;
+                    top: 0;
+                    display: none;
+                    width: 100px;
+                    height: 90px;
+
+                    li{
+                        background-color: seagreen;
+                    }
+                    li:hover{
+                        background-color: skyblue;
+                    }
+                }
+            }
+        }
+    </style> -->
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+            }
+
+            #ul1 {
+                width: 500px;
+                font-size: 14px;
+                color: #fff;
+                line-height: 30px;
+                text-align: center;
+                margin: 0 auto;
+                margin-top: 50px;
+            }
+
+            #ul1 li {
+                display: inline-block;
+                float: left;
+                width: 98px;
+                height: 30px;
+                background: #f60;
+                border: 1px solid #fff;
+            }
+
+            #ul1 li:hover {
+                background: #666666;
+            }
+
+            #ul1 .ul2 {
+                display: none;
+                position: relative;
+                width: 100px;
+            }
+
+            #ul1 .ul2 li {
+                background: gold;
+                position: relative;
+            }
+
+            #ul1 .ul2 li:hover {
+                background: #F6F;
+            }
+
+            #ul1 .ul2 .ul3 li:hover {
+                background: skyblue;
+            }
+
+            #ul1 .ul2 .ul3 li {
+                background: seagreen;
+            }
+
+            #ul1 .ul2 .ul3 {
+                position: absolute;
+                left: 98px;
+                top: 0px;
+                display: none;
+                width: 100px;
+                height: 90px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <ui id="ul1">
+            <!-- <li class="li1">
+            <a href="##">一级导航</a>
+            <ul class="ul2">
+                <li class="li2">
+                    <a href="###">二级导航</a>
+                    <ul class="ul3">
+                        <li class="li3">
+                            <a href="##">三级导航1</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li> -->
+        </ui>
+        <script>
+            let xml = new XMLHttpRequest()
+            xml.open('get', './nav.json', true)
+            xml.send()
+            xml.onreadystatechange = function () {
+                if (xml.status == 200 && xml.readyState == 4) {
+                    let datas = JSON.parse(xml.responseText).data
+                    let li1 = ''
+                    datas.forEach((fir) => {
+
+                        let li2 = ''
+                        fir.content.forEach((sec) => {
+                            let li3 = ''
+                            sec.content.forEach((thi) => {
+
+                                li3 += '<li class="li3">' + `<a href='##'>` + thi + `</a>` + `</li>`
+                            })
+                            console.log('li3');
+                            console.log(li3);
+                            li2 += `<li class ='li2'>` + `<a href='##'>` + sec.title + `</a>` + `<ul class='ul3'>` + li3 + `</ul>` + `</li>`
+                        })
+                        console.log('li2');
+                        console.log(li2);
+                        li1 += `<li class='li1'>` +
+                            `<a href='##'>` + fir.title + `</a>` + `<ul class='ul2'>` + li2 + `</ul>` + `</li>`
+
+                    });
+                    console.log('li1');
+                    console.log(li1);
+                    document.querySelector('#ul1').innerHTML = li1
+                    let one = document.querySelectorAll('.li1')
+                    let ul2 = document.querySelectorAll('.ul2')
+                    let two = document.querySelectorAll('.li2')
+                    let ul3 = document.querySelectorAll('.ul3')
+
+                    showAndHide(one, ul2)
+                    showAndHide(two, ul3)
+
+
+                }
+            }
+            function showAndHide(lis, uls) {
+                for (let i = 0; i < lis.length; i++) {
+                    lis[i].index = i
+                    lis[i].onmouseover = function () {
+                        uls[this.index].style.display = 'block'
+
+                    }
+                    lis[i].onmouseout = function () {
+                        uls[this.index].style.display = 'none'
+                    }
+                }
+            }
+        </script>
+    </body>
+
+</html>
