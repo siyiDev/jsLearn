@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <script src="./jq.js"></script>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
         <style>
             table,
             th,
             td {
                 border: 1px solid black;
             }
-        
+
             table {
                 border-collapse: collapse;
                 margin-top: 30px;
@@ -19,18 +21,19 @@
                 width: 600px;
                 text-align: center;
             }
-        
+
             td,
             th {
                 width: 120px;
             }
-        
+
             button {
                 border: 0;
             }
         </style>
-</head>
-<body>
+    </head>
+
+    <body>
         <table>
             <tr>
                 <th><button class="all">全选</button></th>
@@ -69,5 +72,47 @@
             <span>总计：</span>
             <span class="sum">0</span>
         </div>
-</body>
+    </body>
+    <script>
+        getSum()
+        $('.add').click(function () {
+            let num = parseInt($(this).prev().text())
+            num++
+            $(this).prev().text(num)
+            let price = parseInt($(this).parent().prev().text())
+            $(this).parent().next().text(price * num)
+            getSum()
+        })
+
+        $('.jian').click(function () {
+            let num = parseInt($(this).next().text())
+            num--
+            if (num < 1) {
+                num = 1
+            }
+            $(this).next().text(num)
+            let price = parseInt($(this).parent().prev().text())
+            $(this).parent().next().text(price * num)
+            getSum()
+
+        })
+        function getSum() {
+            let sum = 0
+            for (let i = 0; i < $('.total').length; i++) {
+                if ($('.total').eq(i).parent().find('input').prop('checked')) {
+                    sum += parseInt($('.total').eq(i).text())
+                }
+            }
+            $('.sum').text(sum)
+        }
+        $('.all').click(function () {
+            $('.getGoods').prop('checked', true)
+            getSum()
+        })
+        $('.getGoods').click(function () {
+
+            getSum()
+        })
+    </script>
+
 </html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            #box {
+                width: 512px;
+                height: 536px;
+                border: 1px solid red;
+                background: url('./bg2.jpg') no-repeat 0px -1000px;
+                position: relative;
+            }
+
+            #img {
+                position: absolute;
+                bottom: 100px;
+                left: 200px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="box">
+            <img src="./me.png" alt="" id="img">
+        </div>
+        <script>
+            let box = document.getElementById('box');
+            let img = document.getElementById('img');
+            let num = 0
+
+            setInterval(() => {
+                num++
+                if (num >= 1000) 
+                    num = 0;
+                box.style.backgroundPosition = '0px ' + (-1000+num) + 'px';//上面0px 后 一定要加空格
+            }, 10)
+
+            window.document.onkeydown = function (e) {
+
+                if (e.keyCode == 38) {
+                    let top = img.offsetTop - 10
+                    if (top <= 20) {
+                        top = 20
+                    }
+                    img.style.top = top + 'px'
+                }
+                if (e.keyCode == 40) {
+                    let top = img.offsetTop + 10
+                    if (top >= 420) {
+                        top = 420
+                    }
+                    img.style.top = top + 'px'
+                }
+                if (e.keyCode == 37) {
+                    let left = img.offsetLeft - 10;
+                    if (left <= 20) left = 20;
+                    img.style.left = left + 'px';
+                }
+
+                // 2.2 向右 keyCode 39
+                if (e.keyCode == 39) {
+                    let left = img.offsetLeft + 10;
+                    if (left >= 380) left = 380;
+                    img.style.left = left + 'px';
+                }
+
+
+            }
+
+
+        </script>
+    </body>
+
+
+</html>
