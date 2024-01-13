@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            #smallImg {
+                width: 300px;
+                height: 300px;
+                background-image: url(./lou.jpg);
+                background-size: cover;
+            }
+
+            #smallDiv {
+                width: 100px;
+                height: 100px;
+                background-color: rgba(255, 0, 0, 0.2);
+                display: none;
+                position: absolute
+            }
+
+            #bigDiv {
+                width: 300px;
+                height: 300px;
+                position: absolute;
+                left: 300px;
+                overflow: hidden;
+                display: none;
+            }
+
+            #bigImg {
+                width: 900px;
+                height: 900px;
+                position: absolute;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="fang">
+            <div id="smallImg">
+                <div id="smallDiv"></div>
+            </div>
+        </div>
+        <div id="bigDiv">
+            <img src="./lou.jpg" alt="" id="bigImg" class="s">
+        </div>
+        <script>
+            let smallImg = document.querySelector("#smallImg");
+            let smallDiv = document.querySelector("#smallDiv");
+            let bigDiv = document.querySelector("#bigDiv");
+            let bigImg = document.querySelector("#bigImg");
+
+            smallImg.onmouseover = function () {
+                smallDiv.style.display = "block";
+                bigDiv.style.display = "block";
+            }
+            smallImg.onmouseout = function () {
+                smallDiv.style.display = "none";
+                bigDiv.style.display = "none";
+            }
+            smallImg.onmousemove = function (e) {
+                e = e || window.event;
+                let x = e.clientX - 50
+                let y = e.clientY - 50
+                if (x >= 200) {
+                    x = 200
+                }
+                if (x <= 0) {
+                    x = 0
+                }
+                if (y >= 200) {
+                    y = 200
+                }
+                if (y <= 0) {
+                    y = 0
+                }
+                smallDiv.style.left = x + "px";
+                smallDiv.style.top = y + "px";
+                bigImg.style.left = -3 * x + "px";
+                bigImg.style.top = -3 * y + "px";
+            }
+        </script>
+    </body>
+
+</html>
